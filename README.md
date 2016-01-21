@@ -1,5 +1,5 @@
 # dev-env-react
-Save a little time and start building your react app right away
+Save a little time and start building your react app right away!
 
 ###Start me up!
 
