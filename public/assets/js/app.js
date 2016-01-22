@@ -1,18 +1,34 @@
-var React = require('react');
-var ReactDOM = require('react-dom');
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Search from './search.js';
+import Display from './display.js';
+import Video from './video.js';
 
-import {File1} from './file1.js';
-import {File2} from './file2.js';
-
-var App = React.createClass({
-  render: function() {
+class App extends React.Component {
+  constructor() {
+    super();
+    this.state = {
+      results: [],
+      video: ''
+    }
+    this.getResults = this.getResults.bind(this);
+    this.setVideo = this.setVideo.bind(this);
+  }
+  getResults(videos) {
+    this.setState({ results: videos })
+  }
+  setVideo(id){
+    this.setState({ video: id })
+  }
+  render() {
     return (
       <div className="container">
-        <File1 />
-        <File2 />
+        <Search retrieveResults={this.getResults} />
+        <Display videos={this.state.results} getVideo={this.setVideo}/>
+        <Video vid={this.state.video}></Video>
       </div>
     )
   }
-});
+}
 
 ReactDOM.render(<App />, document.getElementById('app'));
